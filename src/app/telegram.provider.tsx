@@ -36,7 +36,7 @@ export const TelegramProvider = ({
         </p>
         <a
           className="inline-block bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-800/50 outline-none rounded-md text-sm font-semibold mt-2 px-4 py-2 transition-[background,box-shadow]"
-          href="https://t.me/aucepam_bot"
+          href="https://t.me/CoinFlipDevTGWebBot"
           rel="noreferrer"
           target="_blank"
         >
