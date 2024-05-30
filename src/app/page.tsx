@@ -4,6 +4,7 @@ import { useTelegram } from "./telegram.provider";
 
 export default function Home() {
   const [counter, setCounter] = useState<number>(0);
+  const [gameResult, setGameResult] = useState<boolean | null>(null);
   const telegram = useTelegram();
 
   const handleMainButtonClick = useCallback(() => {
@@ -32,7 +33,12 @@ export default function Home() {
           <span>Counter</span>
           {counter}
         </div>
+        <div>
+          - {JSON.stringify(telegram)}-{" "}
+          {JSON.stringify(telegram.initDataUnsafe)}
+        </div>
         <button onClick={() => setCounter(counter + 1)}>+</button>
+        <button onClick={() => {}}>TEST</button>
       </div>
     </>
   );
