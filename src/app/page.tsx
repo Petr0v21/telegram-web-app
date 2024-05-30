@@ -33,7 +33,11 @@ export default function Home() {
           <span>Counter</span>
           {counter}
         </div>
-        <div>
+        <div
+          style={{
+            width: 240,
+          }}
+        >
           - {JSON.stringify(telegram)}-{" "}
           {JSON.stringify(telegram.initDataUnsafe)}
         </div>
