@@ -38,8 +38,7 @@ export default function Home() {
             width: 240,
           }}
         >
-          - {JSON.stringify(telegram)}-{" "}
-          {JSON.stringify(telegram.initDataUnsafe)}
+          {JSON.stringify({ hash: telegram.initDataUnsafe.hash })}
         </div>
         <button onClick={() => setCounter(counter + 1)}>+</button>
         <button onClick={() => {}}>TEST</button>
