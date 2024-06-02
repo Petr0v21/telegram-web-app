@@ -4,7 +4,7 @@ import { useTelegram } from "./telegram.provider";
 import { TelegramWebApps } from "telegram-webapps-types";
 import Image from "next/image";
 import CoinImage from "../../public/coin.svg";
-import { gameService } from "./services/gameService";
+import { gameService } from "../services/gameService";
 
 export default function Home() {
   const [gameResult, setGameResult] = useState<boolean | null>(null);
@@ -37,9 +37,11 @@ export default function Home() {
           onClick={() => {
             gameService.play({ bet }).then((res) => {
               if (res && res.success) {
-                (telegram as any).showAlert(`You win!`);
+                // (telegram as any).showAlert(`You win!`);
+                alert(`You win!`);
               }
-              (telegram as any).showAlert(`You lose! ${res}`);
+              // (telegram as any).showAlert(`You lose! ${res}`);
+              alert(`You lose! ${res}`);
               setBet(1);
             });
           }}
