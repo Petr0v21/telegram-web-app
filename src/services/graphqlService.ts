@@ -13,7 +13,7 @@ export class GraphQLService {
     this.graphQLClient = new GraphQLClient(endpoint, {
       headers: {
         "key-token": this.getTelegramPayload()
-          ? `Bearer ${this.getTelegramPayload()}`
+          ? `${this.getTelegramPayload()}`
           : "",
       },
     });
