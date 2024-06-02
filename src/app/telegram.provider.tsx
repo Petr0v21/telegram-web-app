@@ -13,9 +13,7 @@ export const TelegramProvider = ({
   const [webApp, setWebApp] = useState<TelegramWebApps.WebApp | any>({});
 
   useEffect(() => {
-    console.log("env", process.env.NEXT_PUBLIC_TEST);
     const telegram = (window as any).Telegram.WebApp;
-    console.log("tg", (window as any).Telegram);
     if (telegram) {
       telegram.ready();
       setWebApp(telegram);

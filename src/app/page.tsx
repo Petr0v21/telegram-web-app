@@ -1,48 +1,69 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import { useTelegram } from "./telegram.provider";
+import { TelegramWebApps } from "telegram-webapps-types";
+import Image from "next/image";
+import CoinImage from "../../public/coin.svg";
+import { gameService } from "./services/gameService";
 
 export default function Home() {
-  const [counter, setCounter] = useState<number>(0);
   const [gameResult, setGameResult] = useState<boolean | null>(null);
-  const telegram = useTelegram();
-
-  const handleMainButtonClick = useCallback(() => {
-    telegram.showAlert(`You clicked ${counter} times!`);
-  }, [counter, telegram]);
-
-  useEffect(() => {
-    telegram.MainButton.setParams({
-      text: "CLICK ON ME",
-      is_active: true,
-      is_visible: true,
-    });
-  }, [telegram]);
-
-  useEffect(() => {
-    telegram.onEvent("mainButtonClicked", handleMainButtonClick);
-    return () => telegram.offEvent("mainButtonClicked", handleMainButtonClick);
-  }, [handleMainButtonClick, telegram]);
+  const [bet, setBet] = useState<number>(1);
+  const telegram = useTelegram() as TelegramWebApps.WebApp;
 
   return (
     <>
       <h2>Hello, {telegram.initDataUnsafe?.user?.first_name || "user"}</h2>
-      <p>Let&apos;s create a Telegram Web App!</p>
+      <p>Coin Flip Telegram Web App!</p>
       <div>
         <div>
-          <span>Counter</span>
-          {counter}
+          <Image alt="Coin" src={CoinImage} />
         </div>
-        <div
-          style={{
-            width: 240,
+        <div>
+          <input
+            type="number"
+            name="bet"
+            value={bet}
+            onChange={({ target: { value } }) => {
+              const val = Number(value);
+              if (!value || isNaN(val) || val <= 0) {
+                setBet(1);
+              }
+              setBet(val);
+            }}
+          />
+        </div>
+        <button
+          onClick={() => {
+            gameService.play({ bet }).then((res) => {
+              if (res && res.success) {
+                (telegram as any).showAlert(`You win!`);
+              }
+              (telegram as any).showAlert(`You lose! ${res}`);
+              setBet(1);
+            });
           }}
         >
-          {JSON.stringify({ hash: telegram.initDataUnsafe.hash })}
-        </div>
-        <button onClick={() => setCounter(counter + 1)}>+</button>
-        <button onClick={() => {}}>TEST</button>
+          Flip
+        </button>
       </div>
     </>
   );
 }
+
+// const handleMainButtonClick = useCallback(() => {
+//   (telegram as any).showAlert(`You clicked ${counter} times!`);
+// }, [counter, telegram]);
+
+// useEffect(() => {
+//   telegram.MainButton.setParams({
+//     text: "CLICK ON ME",
+//     is_active: true,
+//     is_visible: true,
+//   });
+// }, [telegram]);
+
+// useEffect(() => {
+// telegram.onEvent("mainButtonClicked", handleMainButtonClick);
+// return () => telegram.offEvent("mainButtonClicked", handleMainButtonClick);
+// }, [handleMainButtonClick, telegram]);
