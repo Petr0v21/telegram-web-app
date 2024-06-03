@@ -201,7 +201,8 @@ const Game: React.FC = () => {
           onClick={() => {
             const result = socket.connect();
             alert(
-              `${result.connected} ${result.active} ${result.disconnected}`
+              `ENV SOCKET ${process.env.NEXT_PUBLIC_BACK_SOCKET_URL}
+              ${result.connected} ${result.active} ${result.disconnected}`
             );
           }}
         >
