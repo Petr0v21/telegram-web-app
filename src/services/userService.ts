@@ -1,17 +1,18 @@
 import { query, createQueryBody } from "./graphqlService";
 
 const getMeBaseQueryBody = `
-mutation getMe {
+query getMe {
     getMe { 
   $output
 }}`;
 
-export type UserDto = {
+export type User = {
   id: string;
   telegramId: string;
   userName?: string;
   fullName: string;
   avatar?: string;
+  balance: number;
   createdAt: Date;
   updatedAt: Date;
 };
@@ -25,12 +26,13 @@ export class UserService {
         userName: true,
         fullName: true,
         avatar: true,
+        balance: true,
         createdAt: true,
         updatedAt: true,
       }),
       null
     );
-    return res as UserDto;
+    return res as User;
   }
 }
 

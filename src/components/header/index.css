@@ -1,0 +1,33 @@
+.header-container {
+    display: flex;
+    gap: 1em;
+    justify-content: flex-end;
+    padding: 0.5em 1em;
+    border-bottom: 1px solid white;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.header-balance {
+    background: #343131;
+    padding: 0.5em;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.header-avatar {
+    border-radius: 50%;
+}
+
+.header-username {
+    font-size: 16px;
+    font-weight: 500;
+}

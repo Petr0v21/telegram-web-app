@@ -1,18 +1,20 @@
 import { query, createQueryBody, SuccessOutput } from "./graphqlService";
-import { UserDto } from "./userService";
+import { User } from "./userService";
 
 const playBaseQueryBody = `
 mutation play (
-  $bet: Float!
+  $bet: Float!,
+  $side: CoinSide!
 ) {
 play(
-    bet: $bet, 
+    bet: $bet,
+    side: $side, 
 ) { 
   $output
 }}`;
 
 const getHistoryBaseQueryBody = `
-mutation getHistory (
+query getHistory (
   $take: Float,
   $skip: Float,
 ) {
@@ -23,13 +25,19 @@ mutation getHistory (
   $output
 }}`;
 
+export enum CoinSide {
+  HEADS = "HEADS",
+  TAILS = "TAILS",
+}
+
 export type MutationPlayArgs = {
   bet: number;
+  side: CoinSide;
 };
 
 export type QueryGetHistoryArgs = {
-  take: number;
-  skip: number;
+  take?: number;
+  skip?: number;
 };
 
 export type Game = {
@@ -39,20 +47,17 @@ export type Game = {
   userId: string;
   createdAt: Date;
   updatedAt: Date;
-  User: UserDto;
+  User: User;
 };
 
 export class GameService {
   async play(data: MutationPlayArgs) {
-    console.log("data", data);
     const res = await query(
       createQueryBody(playBaseQueryBody, {
         success: true,
       }),
       data
     );
-    console.log("res", res);
-
     return res as SuccessOutput;
   }
 
@@ -65,6 +70,12 @@ export class GameService {
         userId: true,
         createdAt: true,
         updatedAt: true,
+        User: {
+          id: true,
+          userName: true,
+          fullName: true,
+          avatar: true,
+        },
       }),
       data
     );
