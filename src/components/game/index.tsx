@@ -7,6 +7,7 @@ import CoinImage from "../../../public/coin.svg";
 import CoinBackImage from "../../../public/CoinBack.svg";
 import CoinFrameEllipseImage from "../../../public/frame-ellipse.svg";
 import CoinFrameImage from "../../../public/frame.svg";
+import { socket } from "@/services/socket";
 
 const Game: React.FC = () => {
   const [bet, setBet] = useState<{
@@ -195,6 +196,14 @@ const Game: React.FC = () => {
           }
         >
           <span>DOUBLE OR NOTHING</span>
+        </button>
+        <button
+          onClick={() => {
+            const result = socket.connect();
+            alert(result.id);
+          }}
+        >
+          <span>CONNECT</span>
         </button>
       </div>
     </div>
