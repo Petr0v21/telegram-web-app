@@ -200,7 +200,9 @@ const Game: React.FC = () => {
         <button
           onClick={() => {
             const result = socket.connect();
-            alert(result.id);
+            alert(
+              `${result.connected} ${result.active} ${result.disconnected}`
+            );
           }}
         >
           <span>CONNECT</span>
