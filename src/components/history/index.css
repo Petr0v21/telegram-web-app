@@ -1,0 +1,41 @@
+.history-title {
+    font-family: 'Ringbearer', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.history-content {
+    border-radius: 8px;
+    border: 1px solid;
+    border-image-source: linear-gradient(90deg, #3A3029 0%, #746C6C 61%, #3C342F 100%);
+    background: linear-gradient(0deg, #1B1B1E, #1B1B1E),
+radial-gradient(62.3% 144.02% at 50% -55.3%, rgba(74, 53, 38, 0) 0%, rgba(27, 27, 30, 0.5) 100%);
+    box-shadow: 0px 4px 8px 0px rgba(16, 19, 23, 0.5);
+    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.05) inset;
+    box-shadow: 0px 0px 0px 4px rgba(18, 21, 25, 1) inset;
+    min-width: 280px;
+    max-width: 1024px;
+    width: 80vw;
+    height: 240px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.history-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.history-item img {
+    border-radius: 50%;
+}
