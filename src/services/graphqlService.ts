@@ -20,11 +20,6 @@ export class GraphQLService {
   }
 
   private setPayload() {
-    if (process.env.NODE_ENV === "development") {
-      this.telegramPayload =
-        "query_id=AAEt0wsuAAAAAC3TCy57y92c&user=%7B%22id%22%3A772526893%2C%22first_name%22%3A%22%D0%92%D1%8F%D1%87%D0%B5%D1%81%D0%BB%D0%B0%D0%B2%22%2C%22last_name%22%3A%22%D0%9F%D0%B5%D1%82%D1%80%D0%BE%D0%B2%22%2C%22username%22%3A%22petr0v_21%22%2C%22language_code%22%3A%22ru%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1717342017&hash=65300f9c83d0c98fbd468e81cf6e8015f5ecf4609052ec574f5c2ac656841b1b";
-      return;
-    }
     if (typeof window !== "undefined" && (window as any).Telegram.WebApp) {
       try {
         const tokensString = (window as any).Telegram.WebApp.initData;
