@@ -15,10 +15,6 @@ const Game: React.FC = () => {
     isWin?: boolean | null;
   }>({});
 
-  useEffect(() => {
-    console.log("bet", bet);
-  }, [bet]);
-
   const setBetAmount = (amount: number) => {
     setBet({
       ...bet,
@@ -61,7 +57,6 @@ const Game: React.FC = () => {
         ? CoinSide.TAILS.toLowerCase()
         : CoinSide.HEADS.toLowerCase();
     }
-    console.log("clear animate");
     return undefined;
   };
 
