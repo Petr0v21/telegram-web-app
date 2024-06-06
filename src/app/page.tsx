@@ -10,10 +10,7 @@ import { socket } from "../services/socket";
 
 export default function Home() {
   useEffect(() => {
-    socket.connect();
-    return () => {
-      socket.disconnect();
-    };
+    alert("test " + socket.connected);
   }, []);
   return (
     <>
