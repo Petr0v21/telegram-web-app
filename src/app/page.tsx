@@ -5,8 +5,15 @@ import Game from "@/components/game";
 import Image from "next/image";
 import Title from "../../public/title.png";
 import Instructions from "@/components/instructions";
+import { socket } from "../services/socket";
 
 export default function Home() {
+  useEffect(() => {
+    socket.connect();
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   return (
     <>
       <Header />
