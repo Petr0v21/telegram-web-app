@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import Header from "@/components/header";
 import History from "@/components/history";
 import Game from "@/components/game";
